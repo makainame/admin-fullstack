@@ -10,6 +10,11 @@ jobs:
         run: |
           cd /root/project
           git pull
+      - name: 构建前端
+        run: |
+          cd /root/project/admin-vue
+          npm install
+          npm run build
       - name: 构建并部署
         run: |
           cd /root/project
