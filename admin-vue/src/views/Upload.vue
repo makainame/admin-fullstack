@@ -33,7 +33,7 @@ const page = ref(1)
 const size = ref(10)
 const total = ref(0)
 const getFileList = async () => {
-  const res = await request.get(`/api/upload/list?page=${page.value}&size=${size.value}`)
+  const res = await request.get(`/upload/list?page=${page.value}&size=${size.value}`)
   fileList.value = res.data.data
   total.value = res.data.total
 }

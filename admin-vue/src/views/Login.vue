@@ -97,7 +97,7 @@ const login = async () => {
 
   loading.value = true
   try {
-    const res = await request.post('/api/login', new URLSearchParams({
+    const res = await request.post('/login', new URLSearchParams({
       username: form.username,
       password: form.password
     }))

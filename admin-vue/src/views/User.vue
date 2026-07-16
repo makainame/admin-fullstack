@@ -100,7 +100,7 @@ const previewUrl = ref('')
 const avatarUrl = (name) => `${import.meta.env.VITE_AVATAR_URL || 'http://localhost:8000/upload/avatars'}/${name}`
 
 const getUserList = async ()=>{
-  const res = await request.get(`/api/user/list?page=${page.value}&size=${size.value}`)
+  const res = await request.get(`/user/list?page=${page.value}&size=${size.value}`)
   userList.value = res.data.data
   total.value = res.data.total
 }
@@ -129,7 +129,7 @@ const submitUser = async ()=>{
     fd.append('password', form.value.password)
     fd.append('nickname', form.value.nickname)
     if(selectedFile.value) fd.append('file', selectedFile.value)
-    await request.post('/api/user/add', fd)
+    await request.post('/user/add', fd)
   } else {
     fd.append('uid', form.value.id)
     fd.append('nickname', form.value.nickname)
@@ -141,12 +141,12 @@ const submitUser = async ()=>{
   getUserList()
 }
 const delUser = async (uid)=>{
-  await request.delete(`/api/user/del?uid=${uid}`)
+  await request.delete(`/user/del?uid=${uid}`)
   ElMessage.success('删除成功')
   getUserList()
 }
 const exportExcel = async ()=>{
-  const res = await request.get('/api/excel/export/user',{responseType:'blob'})
+  const res = await request.get('/excel/export/user',{responseType:'blob'})
   const blob = new Blob([res.data],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
   const a = document.createElement('a')
   a.href = URL.createObjectURL(blob)
@@ -158,7 +158,7 @@ const handleImport = async (e)=>{
   const file = e.target.files[0]
   const fd = new FormData()
   fd.append('file',file)
-  await request.post('/api/excel/import/user',fd)
+  await request.post('/excel/import/user',fd)
   ElMessage.success('导入成功')
   getUserList()
 }
