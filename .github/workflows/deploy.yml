@@ -10,11 +10,10 @@ jobs:
         run: |
           cd /root/project
           git pull
-      - name: 构建前端
+      - name: Docker 容器内构建前端
         run: |
           cd /root/project/admin-vue
-          npm install
-          npm run build
+          docker run --rm -v $(pwd):/app -w /app node:18 bash -c "npm install && npm run build"
       - name: 构建并部署
         run: |
           cd /root/project
