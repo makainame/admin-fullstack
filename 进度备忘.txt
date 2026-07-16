@@ -1,0 +1,37 @@
+# 进度备忘 — 2026.7.14
+
+## ✅ 已完成
+- [x] 后端代码优化（密码加密、头像上传、文件校验、StaticFiles）
+- [x] 后端方案一部署（conda + nohup）
+- [x] Docker CE 升级 1.13→26.1 + 代理配置
+- [x] 后端方案二部署（Docker 容器）
+- [x] 前端环境变量（.env.development / .env.production）
+- [x] Vite proxy 代理配置
+- [x] 前端 router 改 hash 模式
+- [x] vite.config.js 加 base: '/admin/'
+- [x] Nginx 反向代理配置
+- [x] 前端部署访问正常 http://192.168.209.150/admin/#/login
+- [x] 文档持续同步
+
+## ⏳ 明天继续
+- [ ] 前端 Docker Nginx 容器部署（文档 3.5）
+- [ ] 全栈一体化 Docker 编排（文档 3.6）
+- [ ] 整体收尾
+
+## 💡 启动命令速查
+```bash
+# 后端（方案一）
+conda activate backend && cd /root/backend && nohup python run.py > logs/run.log 2>&1 &
+
+# 后端（方案二）
+docker start fastapi-admin
+
+# 前端开发
+cd admin-vue && npm run dev
+
+# 前端打包
+npm run build
+
+# 前端部署上传
+scp -r dist/* root@192.168.209.150:/usr/share/nginx/html/admin/
+```
