@@ -134,7 +134,7 @@ const submitUser = async ()=>{
     fd.append('uid', form.value.id)
     fd.append('nickname', form.value.nickname)
     if(selectedFile.value) fd.append('file', selectedFile.value)
-    await request.post('/api/user/update', fd)
+    await request.post('/user/update', fd)
   }
   dialogVisible.value = false
   ElMessage.success(isAdd.value ? '新增成功' : '修改成功')
